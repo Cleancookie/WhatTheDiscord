@@ -1,5 +1,16 @@
 {
+  "name": "WhatTheDiscord",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Cleancookie/WhatTheDiscord.git",
+  "author": "Alex Law <pokemon999101@hotmail.co.uk>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index"
+  },
   "dependencies": {
-    "discord.js": "^12.5.1"
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7"
   }
 }
