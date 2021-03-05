@@ -1,21 +1,21 @@
 require("dotenv").config();
 const Discord = require("discord.js");
+const collectMessages = require('./functions/collectMessages')
 const client = new Discord.Client();
-const grabEmotes = require('./functions/grabEmotes')
-const replyStats = require('./functions/replyStats')
 
 client.on("ready", () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on("message", async (msg) => {
-    if (msg.content == 'here') {
-      grabEmotes(msg)
-    }
+  console.log(`${msg.author.username}(${msg.guild.name}/${msg.channel.name}): ${msg.content}`)
+  const guild = msg.guild;
+  const channel = msg.channel;
+  const author = msg.author;
 
-    if (msg.content == "show") {
-      replyStats(msg)
-    }
+  // get past 1500 msgs
+  let msgs = await collectMessages(msg, 1500)
+  console.log(msgs.length);
 });
 
 client.login(process.env.DISCORD_TOKEN);
