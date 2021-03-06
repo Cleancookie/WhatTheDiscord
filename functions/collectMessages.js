@@ -7,7 +7,7 @@ require('dotenv');
  * @param {number} limit
  * @returns
  */
-const collectMessages = async function (triggeringMsg, limit = 500) {
+module.exports = async function (triggeringMsg, limit = 500) {
 	const channel = triggeringMsg.channel;
 	let msgs = [];
 	let lastId = null;
@@ -39,5 +39,3 @@ const collectMessages = async function (triggeringMsg, limit = 500) {
 
 	return msgs;
 };
-
-module.exports = collectMessages;
