@@ -14,7 +14,7 @@ client.on("message", async (msg) => {
   const author = msg.author;
 
   // get past 1500 msgs
-  let msgs = await collectMessages(msg, 1500)
+  let msgs = await collectMessages(msg, 500)
   console.log(msgs.length);
 });
 
