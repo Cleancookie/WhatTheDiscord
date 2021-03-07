@@ -12,9 +12,6 @@ module.exports = async function (triggeringMsg, limit = 500) {
 	let msgs = [];
 	let lastId = null;
 
-	if (process.env.APP_ENV === 'DEV') {
-		console.log(`Getting chat from ${triggeringMsg.guild.name}/${triggeringMsg.channel.name}`);
-	}
 	while (true) {
 		let thisRoundsLimit = (msgs.length + 100 > limit) ? limit % 100 : 100;
 		
@@ -23,12 +20,6 @@ module.exports = async function (triggeringMsg, limit = 500) {
 			before: lastId,
 		});
 		msgs = [...msgs, ...theseMsgs.values()];
-
-		if (process.env.APP_ENV === 'DEV') {
-			console.log(
-				`Count: ${theseMsgs.array().length} / total: ${msgs.length}`
-			);
-		}
 
 		if (msgs.length >= limit || theseMsgs.array().length === 0) {
 			break;

@@ -1,6 +1,8 @@
 require("dotenv").config();
 const Discord = require("discord.js");
-const collectMessages = require('./functions/collectMessages')
+const collectEmojis = require("./functions/collectEmojis");
+const collectMessages = require('./functions/collectMessages');
+const countObjects = require("./functions/countObjects");
 const client = new Discord.Client();
 
 client.on("ready", () => {
@@ -15,7 +17,14 @@ client.on("message", async (msg) => {
 
   // get past 1500 msgs
   let msgs = await collectMessages(msg, 500)
-  console.log(msgs.length);
+
+  // loop through them and collect all emojis
+  let emojis = await collectEmojis(msgs);
+
+  // tally up the emojis
+  let tally = await countObjects(emojis, 'emoji');
+
+  console.log(tally);
 });
 
 client.login(process.env.DISCORD_TOKEN);
